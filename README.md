@@ -107,7 +107,7 @@ and the both servers will start
 
 This uses `concurrently` to run `react-scripts start` and `nodemon backend/index.js` in parallel.
 
-### 4. if you want to setup Frontend and Backend separately
+### if you want to setup Frontend and Backend separately
 
 Start the backend server:
 
