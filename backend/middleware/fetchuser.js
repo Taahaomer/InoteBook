@@ -9,10 +9,13 @@ const fetchuser = async (req, res, next) => {
     }
     try{
         const data = jwt.verify(token,JWT_Secret);
+        console.log(req.user)
+        console.log(data.user)
         req.user = data.user;
         next();
     } catch (error){
         console.log(error)
+
         res.status(401).send({error : "2 Please authenticate using a valid token"})
     }
     
