@@ -19,7 +19,12 @@ const NoteState = (props) =>{
 
             const json = await response.json();
 
-            setNotes(json)
+            if(Array.isArray(json)){
+                setNotes(json);
+            }
+            else{
+                setNotes([]);
+            }
         }
 
     const notesInitial=[]

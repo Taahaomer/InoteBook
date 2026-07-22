@@ -21,11 +21,12 @@ function App() {
           <Alert alert={alert}/>
           <div className="container">
             <Routes>
-              <Route exact path="/" element={<Home/>}> </Route>
+              <Route exact path="/" element={<Login/>}></Route>
+              <Route exact path="/home" element={<Home/>}></Route>
               <Route exact path="/about" element={<About />}></Route>
               <Route exact path="/login" element={<Login/>}></Route>
               <Route exact path="/sign-up" element={<Signup/>}></Route>
-            </Routes>
+          </Routes>
           </div>
       </Router>
 

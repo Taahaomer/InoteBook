@@ -30,7 +30,7 @@ const Login = () => {
               // save auth token and redirect
               showAlert("Login unsuccessfull", "success")
               localStorage.setItem('token',json.AuthToken)
-              navigate("/")
+              navigate("/home");
           }
           // if login not successfull
           else{
