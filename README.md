@@ -1,70 +1,179 @@
-# Getting Started with Create React App
+# iNotebook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack MERN application for creating, managing, and organizing personal notes. Users can sign up, log in, and securely manage their own notes — each user only has access to their own data, enforced via JWT authentication.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication (Signup / Login) using JWT
+- Passwords hashed with bcrypt
+- Create, read, update, and delete notes
+- Notes are private to each authenticated user
+- Toast-style alerts for user feedback (success/error)
+- Responsive UI built with Bootstrap
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend**
+- React
+- React Router DOM
+- Context API for state management (notes & alerts)
+- Bootstrap
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Backend**
+- Node.js / Express
+- MongoDB with Mongoose
+- JSON Web Tokens (jsonwebtoken) for auth
+- bcryptjs for password hashing
+- express-validator for request validation
+- CORS
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+inotebook/
+├── backend/
+│   ├── middleware/
+│   │   └── fetchuser.js       # Verifies JWT and attaches user to request
+│   ├── models/
+│   │   ├── User.js            # User schema
+│   │   └── Notes.js           # Note schema
+│   ├── routes/
+│   │   ├── auth.js            # Signup / Login / Get user routes
+│   │   └── notes.js           # CRUD routes for notes
+│   ├── db.js                  # MongoDB connection
+│   ├── index.js               # Express app entry point
+│   └── package.json
+│
+├── public/                    
+├── src/
+│   ├── components/
+│   │   ├── About.js
+│   │   ├── AddNote.js
+│   │   ├── Alert.js
+│   │   ├── Home.js
+│   │   ├── Login.js
+│   │   ├── Navbar.js
+│   │   ├── NoteItem.js
+│   │   ├── Notes.js
+│   │   └── Signup.js
+│   ├── context/
+│   │   └── notes/
+│   │       ├── noteContext.js
+│   │       └── noteState.js   # Global note & alert state, API calls
+│   ├── App.js
+│   ├── App.css
+│   └── index.js
+│
+├── .gitignore
+└── package.json                # Frontend (root) package.json
+```
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [MongoDB](https://www.mongodb.com/) running locally, or a MongoDB Atlas connection string
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Clone the repository
 
-### `npm run eject`
+```bash
+git clone https://github.com/Taahaomer/InoteBook
+cd inotebook
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2. Backend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd backend
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a `.env` file inside `backend/`:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```env
+JWT_SECRET=your_long_random_secret_here
+MONGO_URI=mongodb://127.0.0.1:27017/inotebook
+PORT=5000
+```
+### 3. Project Setup
 
-## Learn More
+Once both `npm install` steps above have been run (root and `backend/`), you can start the frontend and backend together from the project root with:
+### Run both servers at once 
+```bash
+npm run both
+```
+and the both servers will start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This uses `concurrently` to run `react-scripts start` and `nodemon backend/index.js` in parallel.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4. if you want to setup Frontend and Backend separately
 
-### Code Splitting
+Start the backend server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npx nodemon index.js
+```
 
-### Analyzing the Bundle Size
+The API will run on `http://localhost:5000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Start the Frontend server:
 
-### Making a Progressive Web App
+From the project root:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm install
+npm start
+```
 
-### Advanced Configuration
+The app will run on `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## API Endpoints
 
-### Deployment
+All routes are prefixed with `/api`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Auth Routes (`/api/auth`)
 
-### `npm run build` fails to minify
+| Method | Endpoint         | Description                  | Auth Required |
+|--------|------------------|-------------------------------|----------------|
+| POST   | `/createuser`    | Register a new user           | No             |
+| POST   | `/loginuser`     | Log in and receive JWT token  | No             |
+| POST   | `/getuser`       | Get logged-in user's details  | Yes            |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Notes Routes (`/api/notes`)
+
+| Method | Endpoint                  | Description             | Auth Required |
+|--------|----------------------------|--------------------------|----------------|
+| GET    | `/fetchallnotes`           | Fetch all notes for user | Yes            |
+| POST   | `/addnote`                 | Add a new note           | Yes            |
+| PUT    | `/updatenote/:id`          | Update an existing note  | Yes            |
+| DELETE | `/deletenote/:id`          | Delete a note            | Yes            |
+
+Authenticated requests must include an `auth-token` header containing the JWT received at login/signup.
+
+## Environment Variables
+
+| Variable     | Description                              | Used In   |
+|--------------|--------------------------------------------|-----------|
+| `JWT_SECRET` | Secret key used to sign/verify JWT tokens | backend   |
+| `MONGO_URI`  | MongoDB connection string                 | backend   |
+| `PORT`       | Port the backend server runs on           | backend   |
+
+## Scripts
+
+**Backend**
+```bash
+npx nodemon ./index.js   # Run backend with auto-reload
+```
+
+**Frontend (run from project root)**
+```bash
+npm run both             # Run frontend + backend together (requires backend/ deps installed too)
+npm start               # Run frontend in development mode
+npm run build           # Build frontend for production
+
+```
+
+## License
+
+ISC
