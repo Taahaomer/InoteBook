@@ -27,15 +27,17 @@ function Notes() {
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
     }
-  useEffect(() => {
-    if(localStorage.getItem('token')){
-      fetchAllNotes();
-    }
-    else{
-      navigate("/login")
-    }
-    
-  }, []);
+
+    useEffect(() => {
+        fetchAllNotes();
+
+        if(localStorage.getItem('token')){
+            navigate("/");
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
 
   const updateNote = (currentNote) => {
     setNote({ id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag })

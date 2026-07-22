@@ -1,4 +1,4 @@
-import Alert from "../../components/Alert";
+
 import NoteContext from "./noteContext";
 import { useState } from "react";
 const NoteState = (props) =>{
@@ -57,7 +57,7 @@ const NoteState = (props) =>{
             } ,
         });
         const json = await response.json()
-        
+        console.log( json)
 
             const newNotes = notes.filter((note)=>{ return note._id !== id});
             setNotes(newNotes)
@@ -76,7 +76,7 @@ const NoteState = (props) =>{
 
         });
         const json = await response.json();
-        
+        console.log( json)
           // edit note on client side
         const newNotes = JSON.parse(JSON.stringify(notes))
         for(let i=0; i<newNotes.length; i++){
