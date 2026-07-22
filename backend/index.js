@@ -1,6 +1,6 @@
 const dotenvResult = require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
-console.log('DOTENV DEBUG:', dotenvResult);
-console.log('MONGO_URI value:', process.env.MONGO_URI);
+// console.log('DOTENV DEBUG:', dotenvResult);
+// console.log('MONGO_URI value:', process.env.MONGO_URI);
 
 const connectToMongo = require("./db");
 const express = require("express");

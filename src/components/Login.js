@@ -6,6 +6,7 @@ const Login = () => {
   const navigate = useNavigate()
   const context = useContext(NoteContext);
   const {showAlert} = context;
+  const host = process.env.REACT_APP_API_URL;
 
   const [user, setUser] = useState({
       email:"",
@@ -14,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      const response = await fetch(`http://localhost:5000/api/auth/loginuser`, {
+      const response = await fetch(`${host}/api/auth/loginuser`, {
               method: 'POST',
               headers: {
                   "Content-Type":"application/json",
