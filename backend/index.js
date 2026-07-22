@@ -10,7 +10,15 @@ connectToMongo();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+    origin: [
+        "https://inote-book-3gobcsbio-taaha-omer.vercel.app",
+        "http://localhost:3000"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json())
 
 // Available routes
