@@ -14,7 +14,7 @@ const Login = () => {
   })
 
   const handleSubmit = async (e) => {
-    console.log(`${host}/api/auth/loginuser`)
+    // console.log(`${host}/api/auth/loginuser`)
       e.preventDefault();
       const response = await fetch(`${host}/api/auth/loginuser`, {
               method: 'POST',

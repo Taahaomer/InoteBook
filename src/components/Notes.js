@@ -32,7 +32,7 @@ function Notes() {
         fetchAllNotes();
 
         if(localStorage.getItem('token')){
-            navigate("/");
+            navigate("/home");
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
