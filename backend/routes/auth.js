@@ -8,6 +8,7 @@ const fetchuser = require('../middleware/fetchuser');
 
 const JWT_Secret = process.env.JWT_SECRET;
 
+
 let success=false;
 // Route 1 : Route for auth related tasks - no login required
 
@@ -68,7 +69,7 @@ router.post('/loginuser', [
 ], async (req,res) => {
     // if there are errors then return bad request and the errors
     const errors = validationResult(req);
-    
+    console.log("JWT_SECRET =", process.env.JWT_SECRET);
 
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
@@ -99,10 +100,15 @@ router.post('/loginuser', [
         }
         // signing a token 
         success = true
-        const AuthToken = jwt.sign(data,JWT_Secret) 
-        res.json({success, AuthToken})
+        // const AuthToken = jwt.sign(data,JWT_Secret) 
+        // res.json({success, AuthToken})
         
-        
+const AuthToken = jwt.sign(data, JWT_Secret);
+
+console.log("Generated Token:");
+console.log(AuthToken);
+
+res.json({ success, AuthToken });
         
 
     } catch(error){

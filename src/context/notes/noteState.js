@@ -7,7 +7,7 @@ const NoteState = (props) =>{
 
     // Fetch all Notes
         const fetchAllNotes = async () => {
-
+            console.log(`${host}/api/notes/fetchallnotes`)
             // API call
             const response = await fetch(`${host}/api/notes/fetchallnotes`, {
                 method: 'GET',
