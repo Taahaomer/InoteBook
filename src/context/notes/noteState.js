@@ -32,7 +32,7 @@ const NoteState = (props) =>{
 
 
     // Add a note
-    const addNote = async(title, description, tag) => {
+    const addNote = async(title, description, tags) => {
 
         // API call
         const response = await fetch(`${host}/api/notes/addnote`, {
@@ -41,7 +41,14 @@ const NoteState = (props) =>{
             "Content-Type":"application/json",
             "auth-token": localStorage.getItem('token')
         } ,
-        body: JSON.stringify({title, description, tag}) 
+        body: {
+            "title" : title.stringify(),
+            "description" : description.stringify(),
+            "tags" : tags.split(",")
+        }
+           
+        
+        // body: JSON.stringify({title, description, tags}) 
 
         });
 

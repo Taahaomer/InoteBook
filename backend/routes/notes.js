@@ -27,17 +27,25 @@ router.post("/addnote", fetchuser,
       }
       const title = req.body.title || " ";
       const description = req.body.description || " ";
-      const tags = req.body.tags || " ";
-      
+      let tags = req.body.tags || [];
+    
       // if there are errors then return bad request and console.log the errors
       const error = validationResult(req);
       if (!error.isEmpty()) {
         return res.status(400).json({ error: error.array() });
       }
 
+      // if there are tags then convert to array of strings
+      tags=tags.toString().split(/,\s*/)
+
       const note = new Notes({
         title, description, tags, user: req.user.id
       })
+      // console.log(note.tags.toString())
+      let abc = note.tags.toString().split(",")
+      
+      console.log(abc)
+
       const savedNote = await note.save();
 
       res.json(savedNote);
