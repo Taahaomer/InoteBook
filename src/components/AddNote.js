@@ -7,7 +7,7 @@ function AddNote() {
     const context = useContext(NoteContext);
     const {addNote} = context;
 
-    var [note, setNote] = useState({title:"" , description:"", tag:""})
+    var [note, setNote] = useState({title:"" , description:"", tags:""})
 
     const handleClick = (e) =>{
       e.preventDefault();
@@ -19,8 +19,8 @@ function AddNote() {
           alert("Title can not be empty")
       }
       
-      addNote(note.title, note.description, note.tag)
-      setNote({title:"" , description:"", tag:""})
+      addNote(note.title, note.description, note.tags)
+      setNote({title:"" , description:"", tags:""})
     }
 
     const onChange = (e) => {
@@ -41,8 +41,8 @@ function AddNote() {
             <input type="text" className="form-control" id="description" name="description" value={note.description} placeholder="Enter description" onChange={onChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="tag">Tag</label>
-            <input type="text" className="form-control" id="tag" name="tag" value={note.tag} placeholder="" onChange={onChange}/>
+            <label htmlFor="tags">Tags</label>
+            <input type="text" className="form-control" id="tags" name="tags" value={note.tags} placeholder="" onChange={onChange}/>
           </div>
           <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
         </form>

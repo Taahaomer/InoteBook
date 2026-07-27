@@ -26,8 +26,8 @@ router.post("/addnote", fetchuser,
         return res.status(400).send("Title can't be empty");
       }
       const title = req.body.title || " ";
-      const description = req.body.description || " ";
-      let tags = req.body.tags || [];
+      const description = req.body.description || null;
+      let tags = req.body.tags || null;
     
       // if there are errors then return bad request and console.log the errors
       const error = validationResult(req);
