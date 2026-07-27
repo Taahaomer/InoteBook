@@ -27,7 +27,7 @@ router.post("/addnote", fetchuser,
       }
       const title = req.body.title || " ";
       const description = req.body.description || " ";
-      const tag = req.body.tag || " ";
+      const tags = req.body.tags || " ";
       
       // if there are errors then return bad request and console.log the errors
       const error = validationResult(req);
@@ -36,7 +36,7 @@ router.post("/addnote", fetchuser,
       }
 
       const note = new Notes({
-        title, description, tag, user: req.user.id
+        title, description, tags, user: req.user.id
       })
       const savedNote = await note.save();
 

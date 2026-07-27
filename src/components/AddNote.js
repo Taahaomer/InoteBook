@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import NoteContext from '../context/notes/noteContext'
 
+
 function AddNote() {
 
     const context = useContext(NoteContext);
@@ -30,6 +31,7 @@ function AddNote() {
       <h2 className="my-3"> Add a note </h2>
       <div className="container my-3">
         <form>
+        
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" value={note.title} minLength={3} required placeholder="Enter title" onChange={onChange}/>
