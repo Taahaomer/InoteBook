@@ -30,8 +30,8 @@ const fetchuser = (req, res, next) => {
 
     const token = req.header("auth-token");
 
-    console.log("Received Token at fetchuser:");
-    console.log(token)
+    // console.log("Received Token at fetchuser:");
+    // console.log(token)
 
     if (!token) {
         return res.status(401).send({

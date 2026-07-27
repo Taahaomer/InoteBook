@@ -41,10 +41,7 @@ router.post("/addnote", fetchuser,
       const note = new Notes({
         title, description, tags, user: req.user.id
       })
-      // console.log(note.tags.toString())
-      let abc = note.tags.toString().split(",")
-      
-      console.log(abc)
+
 
       const savedNote = await note.save();
 
@@ -66,8 +63,8 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
 
     // find if the user is owner of the note
         if(note.user.toString() !== req.user.id){
-            console.log(note.user.id.toString())
-            console.log(req.user.id)
+            // console.log(note.user.id.toString())
+            // console.log(req.user.id)
             return res.status(401).send("Not allowed!")}
 
     // Create a new note object 
@@ -95,8 +92,8 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
 
     // find if the user is owner of the note
         if(note.user.toString() !== req.user.id){
-            console.log(note.user.id.toString())
-            console.log(req.user.id)
+            // console.log(note.user.id.toString())
+            // console.log(req.user.id)
             return res.status(401).send("Not allowed!")}
 
         note = await Notes.findByIdAndDelete(req.params.id);

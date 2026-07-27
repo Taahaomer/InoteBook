@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 5000;
 // app.use(cors())
 app.use(cors({
     origin: [
-        // "https://inote-book-k6l3tbrsh-taaha-omer.vercel.app",
         "https://inote-book-sigma.vercel.app",
         "http://localhost:3000"
     ],

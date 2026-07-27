@@ -41,14 +41,7 @@ const NoteState = (props) =>{
             "Content-Type":"application/json",
             "auth-token": localStorage.getItem('token')
         } ,
-        body: {
-            "title" : title,
-            "description" : description,
-            "tags" : tags.split(",")
-        }
-           
-        
-        // body: JSON.stringify({title, description, tags}) 
+        body: JSON.stringify({title, description, tags}) 
 
         });
 

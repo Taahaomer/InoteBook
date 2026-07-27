@@ -69,7 +69,7 @@ router.post('/loginuser', [
 ], async (req,res) => {
     // if there are errors then return bad request and the errors
     const errors = validationResult(req);
-    console.log("JWT_SECRET =", process.env.JWT_SECRET);
+    // console.log("JWT_SECRET =", process.env.JWT_SECRET);
 
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
@@ -105,8 +105,8 @@ router.post('/loginuser', [
         
 const AuthToken = jwt.sign(data, JWT_Secret);
 
-console.log("Generated Token:");
-console.log(AuthToken);
+// console.log("Generated Token:");
+// console.log(AuthToken);
 
 res.json({ success, AuthToken });
         
