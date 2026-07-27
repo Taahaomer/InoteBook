@@ -42,8 +42,8 @@ const NoteState = (props) =>{
             "auth-token": localStorage.getItem('token')
         } ,
         body: {
-            "title" : title.stringify(),
-            "description" : description.stringify(),
+            "title" : title,
+            "description" : description,
             "tags" : tags.split(",")
         }
            
