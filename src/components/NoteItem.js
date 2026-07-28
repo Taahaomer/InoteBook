@@ -7,7 +7,7 @@ const NoteItem = (props) => {
    const {deleteNote} = context
 
    note.tags=note.tags.toString().split(/,\s*/)
-   
+
    return (
     <div className="col-md-3"> 
         <div className="card my-3" >
@@ -15,7 +15,7 @@ const NoteItem = (props) => {
                 <h5 className="card-title">{note.title}</h5>
                 <p className="card-text">{note.description}</p>
                 <div className="d-flex justify-content-between ">
-                    {console.log(note.tags)}
+                    {/* {console.log(note.tags)} */}
                     {(note.tags[0]!==null) &&  <div className='d-flex gap-1'>
                         {note.tags.map((tag)=>{ return <p role="button" className={"border border-dark p-1 rounded"}>{tag}</p>  })}
                     </div>}
