@@ -17,20 +17,23 @@ function AddNote() {
       if (noteCheck===""){
           console.log(noteCheck);
           alert("Title can not be empty")
+          return;
       }
       
       // checking if there are more than 3 tags
-      let abc=note.tags.toString().split(/,\s*/)
-      console.log(note.tags.toString().split(/,\s*/).length())
-      console.log(abc.length())
-
+      const abc=note.tags.toString().split(/,\s*/)
+      if (abc.length>3){
+          alert("Enter 3 or less tags")
+          return;
+      }
+      
       addNote(note.title, note.description, note.tags)
       setNote({title:"" , description:"", tags:""})
     }
 
     const onChange = (e) => {
-
       setNote({...note, [e.target.name]:e.target.value})
+
     }
   return (
     <>

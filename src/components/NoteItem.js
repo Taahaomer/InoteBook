@@ -15,7 +15,6 @@ const NoteItem = (props) => {
                 <p className="card-text">{note.description}</p>
                 <div className="d-flex justify-content-between ">
                     {(note.tags[0]!==null) &&  <div className='d-flex gap-1'>
-                        {console.log(note.tags[0])}
                         {note.tags.map((tag)=>{ return <p role="button" className={"border border-dark p-1 rounded"}>{tag}</p>  })}
                     </div>}
                     

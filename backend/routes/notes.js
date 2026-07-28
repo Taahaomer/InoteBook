@@ -37,7 +37,7 @@ router.post("/addnote", fetchuser,
 
       // if there are tags then convert from single string to array of strings
       tags=tags.toString().split(/,\s*/)
-
+      console.log(tags)
       const note = new Notes({
         title, description, tags, user: req.user.id
       })
