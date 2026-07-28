@@ -69,7 +69,7 @@ const NoteState = (props) =>{
             showAlert("Note deleted", "success")
        }
     // Edit a note
-       const editNote = async (id, title, description, tag) => {
+       const editNote = async (id, title, description, tags) => {
           // API call 
         const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
             method: 'PUT',
@@ -77,7 +77,7 @@ const NoteState = (props) =>{
                 "Content-Type":"application/json",
                 "auth-token": localStorage.getItem('token')
             } ,
-            body: JSON.stringify({title, description, tag}) 
+            body: JSON.stringify({title, description, tags}) 
 
         });
         const json = await response.json();

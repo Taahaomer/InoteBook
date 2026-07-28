@@ -37,6 +37,7 @@ router.post("/addnote", fetchuser,
 
       // if there are tags then convert from single string to array of strings
       tags=tags.toString().split(/,\s*/)
+
       // remove empty tags
       tags=tags.filter(tag => tag.trim().length > 0 )
 
@@ -70,11 +71,17 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
             return res.status(401).send("Not allowed!")}
 
     // Create a new note object 
-        const {title, description, tag} = req.body; 
+        const {title, description, tags} = req.body; 
         const newNote = {};
         if(title){newNote.title=title};
         if(description){newNote.description=description};
-        if(tag){newNote.tag=tag};
+        if(tags){newNote.tags=tags};
+
+          // if there are tags then convert from single string to array of strings
+          newNote.tags=newNote.tags.toString().split(/,\s*/)
+
+          // remove empty tags
+          newNote.tags=newNote.tags.filter(tag => tag.trim().length > 0 )
 
         note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true})
         res.json({note})

@@ -8,23 +8,18 @@ function Notes() {
   const context = useContext(NoteContext);
   const { notes, fetchAllNotes, editNote } = context;
   const navigate = useNavigate()
-  var [note, setNote] = useState({id:"" , etitle:"" , edescription:"", etag:""})
+  var [note, setNote] = useState({id:"" , etitle:"" , edescription:"", etags:""})
 
   
   const ref = useRef(null);
   const refClose = useRef(null);
-
-    // const handleClick = (e) =>{
-    //   e.preventDefault();
-    //   addNote(note.title, note.description, note.tag)
-    // }
 
     const onChange = (e) => {
       setNote({...note, [e.target.name]:e.target.value})
     }
     const onClick = () => {
         
-        editNote(note.id, note.etitle, note.edescription, note.etag)
+        editNote(note.id, note.etitle, note.edescription, note.etags)
         refClose.current.click();
     }
 
@@ -40,7 +35,7 @@ function Notes() {
 
 
   const updateNote = (currentNote) => {
-    setNote({ id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag })
+    setNote({ id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etags:currentNote.tags })
     ref.current.click();
   };
 
@@ -75,8 +70,8 @@ function Notes() {
                         <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} placeholder="Enter description" onChange={onChange}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="tag">Tag</label>
-                        <input type="text" className="form-control" id="etag" name="etag" placeholder="" value={note.etag} onChange={onChange}/>
+                        <label htmlFor="tags">Tags</label>
+                        <input type="text" className="form-control" id="etags" name="etags" placeholder="" value={note.etags} onChange={onChange}/>
                     </div>
                 </form>
             </div>
