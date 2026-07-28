@@ -17,10 +17,11 @@ function Notes() {
     const onChange = (e) => {
       setNote({...note, [e.target.name]:e.target.value})
     }
-    const onClick = () => {
+    const onClick = async () => {
         
         editNote(note.id, note.etitle, note.edescription, note.etags)
         refClose.current.click();
+        console.log("running fetchnotes in onclick")
         fetchAllNotes();
     }
 
