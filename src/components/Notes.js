@@ -38,6 +38,7 @@ function Notes() {
   const updateNote = (currentNote) => {
     setNote({ id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etags:currentNote.tags })
     ref.current.click();
+    fetchAllNotes();
   };
 
 

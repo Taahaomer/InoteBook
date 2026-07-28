@@ -3,11 +3,11 @@ import NoteContext from '../context/notes/noteContext'
 
 const NoteItem = (props) => {
 //    const {note, updateNote} = props;
-   const {updateNote} = props;
+   const {note, updateNote} = props;
    const context = useContext(NoteContext)
-   const {deleteNote, notes} = context
-   const note = notes
-//    note.tags=note.tags.toString().split(/,\s*/)
+   const {deleteNote} = context
+
+    note.tags=note.tags.toString().split(/,\s*/)
     console.log(note)
    return (
     <div className="col-md-3"> 
