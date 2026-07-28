@@ -7,8 +7,8 @@ const NoteItem = (props) => {
    const context = useContext(NoteContext)
    const {deleteNote, notes} = context
    const note = notes
-   note.tags=note.tags.toString().split(/,\s*/)
-
+//    note.tags=note.tags.toString().split(/,\s*/)
+    console.log(note)
    return (
     <div className="col-md-3"> 
         <div className="card my-3" >
