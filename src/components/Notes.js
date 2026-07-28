@@ -21,6 +21,7 @@ function Notes() {
         
         editNote(note.id, note.etitle, note.edescription, note.etags)
         refClose.current.click();
+        fetchAllNotes();
     }
 
     useEffect(() => {
