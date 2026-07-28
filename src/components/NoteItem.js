@@ -1,11 +1,12 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import NoteContext from '../context/notes/noteContext'
 
 const NoteItem = (props) => {
-   const {note, updateNote} = props;
+//    const {note, updateNote} = props;
+   const {updateNote} = props;
    const context = useContext(NoteContext)
-   const {deleteNote} = context
-
+   const {deleteNote, notes} = context
+   const note = notes
    note.tags=note.tags.toString().split(/,\s*/)
 
    return (
