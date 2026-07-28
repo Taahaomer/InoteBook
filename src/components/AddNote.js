@@ -21,7 +21,7 @@ function AddNote() {
       
       // checking if there are more than 3 tags
       let abc=note.tags.toString().split(/,\s*/)
-      console.log(note.tags.toString().split(/,\s*/))
+      console.log(note.tags.toString().split(/,\s*/).length())
       console.log(abc.length())
 
       addNote(note.title, note.description, note.tags)
