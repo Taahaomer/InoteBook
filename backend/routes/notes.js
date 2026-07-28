@@ -39,7 +39,9 @@ router.post("/addnote", fetchuser,
       tags=tags.toString().split(/,\s*/)
       // remove empty tags
       tags.filter(tag=> tag.trim().length > 0)
+      
       console.log(tags)
+      
       const note = new Notes({
         title, description, tags, user: req.user.id
       })
