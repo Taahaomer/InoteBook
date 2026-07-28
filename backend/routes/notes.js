@@ -35,7 +35,7 @@ router.post("/addnote", fetchuser,
         return res.status(400).json({ error: error.array() });
       }
 
-      // if there are tags then convert to array of strings
+      // if there are tags then convert from single string to array of strings
       tags=tags.toString().split(/,\s*/)
 
       const note = new Notes({

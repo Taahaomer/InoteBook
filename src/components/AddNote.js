@@ -19,11 +19,16 @@ function AddNote() {
           alert("Title can not be empty")
       }
       
+      // checking if there are more than 3 tags
+      let abc=note.tags.toString().split(/,\s*/)
+      console.log(abc.length())
+
       addNote(note.title, note.description, note.tags)
       setNote({title:"" , description:"", tags:""})
     }
 
     const onChange = (e) => {
+
       setNote({...note, [e.target.name]:e.target.value})
     }
   return (
@@ -42,7 +47,7 @@ function AddNote() {
           </div>
           <div className="form-group">
             <label htmlFor="tags">Tags</label>
-            <input type="text" className="form-control" id="tags" name="tags" value={note.tags} placeholder="" onChange={onChange}/>
+            <input type="text" className="form-control" id="tags" name="tags" value={note.tags} placeholder="Enter maximum 3 tags (,) comma separated" onChange={onChange}/>
           </div>
           <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
         </form>
